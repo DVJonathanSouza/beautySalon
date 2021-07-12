@@ -1,0 +1,506 @@
+/* ==== RESET CSS START ==== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+/* ==== RESET CSS END ==== */
+
+:root {
+  /* ==== VARIABLES ==== */
+  --header-height: 7.2rem;
+
+  /* FONTS */
+  --title-font-size: 3rem;
+  --subtitle-font-size: 1.6rem;
+
+  --title-font: 'Poppins', sans-serif;
+  --body-font: 'DM Sans', sans-serif;
+
+  /* COLORS */
+  --hue: 150;
+  /* HSL color mode */
+  --base-color: hsla(var(--hue), 80%, 63%);
+  --base-color-second: hsla(var(--hue), 10%, 83%);
+  --base-color-alt: hsla(var(--hue), 80%, 53%);
+
+  --title-color: hsla(var(--hue), 33%, 15%);
+
+  --text-color: hsla(0, 0%, 46%);
+  --text-color-light: hsla(0, 0%, 98%);
+
+  --body-color: hsla(0, 0%, 98%);
+  --body-color-second: hsla(0, 0%, 100%);
+}
+
+html {
+  /* "User Agent" de nosso navegador para 10px */
+  font-size: 62.5%; /* % igual a 10px */
+
+  /* Scroll "leve" na page ao clicar nas tags <a> */
+  scroll-behavior: smooth;
+}
+
+/* ==== BASE ==== */
+
+body {
+  font: 400 1.6rem var(--body-font);
+  color: var(--text-color);
+  background-color: var(--body-color);
+  -webkit-font-smoothing: antialiased;
+}
+
+.title {
+  font: 700 var(--title-font-size) var(--title-font);
+  color: var(--title-color);
+  -webkit-font-smoothing: auto;
+}
+
+/* ==== LAYOUT ==== */
+
+.container {
+  margin-left: 2.4rem;
+  margin-right: 2.4rem;
+}
+
+.grid {
+  display: grid;
+  gap: 3.2rem;
+}
+
+.section {
+  padding: calc(8rem + var(--header-height)) 0;
+}
+
+.section .title {
+  margin-bottom: 1.6rem;
+}
+
+.section .subtitle {
+  font-size: var(--subtitle-font-size);
+}
+
+.section .text p {
+  margin-bottom: 1.6rem;
+}
+
+.section header {
+  margin-bottom: 1.6rem;
+}
+
+.section header strong {
+  color: var(--base-color);
+}
+
+#header {
+  border-bottom: 1px solid #e4e4e4;
+  margin-bottom: 3.2rem;
+  display: flex;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background-color: var(--body-color);
+  width: 100%;
+}
+
+#header.scroll {
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ==== LOGO ==== */
+
+.logo {
+  font: 700 2.1rem var(--title-font);
+  color: var(--title-color);
+}
+
+.logo span {
+  color: var(--base-color);
+}
+
+.logo-alt span {
+  color: var(--text-color-light);
+}
+
+/* ==== NAVIGATION ==== */
+
+nav {
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+nav ul li {
+  text-align: center;
+}
+
+nav ul li a {
+  transition: color 0.2s;
+  /* 'position relative' para que possamos
+  usar o "::after" com 'position absulute' */
+  position: relative;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  color: var(--base-color);
+}
+
+nav ul li a::after {
+  content: '';
+  width: 0%;
+  height: 2px;
+  background-color: var(--base-color);
+
+  position: absolute;
+  left: 0;
+  bottom: -2.4rem;
+
+  transition: width 0.2s;
+}
+
+nav ul li a:hover::after,
+nav ul li a.active::after {
+  width: 100%;
+}
+
+nav .menu {
+  opacity: 0;
+  visibility: hidden;
+  top: -32rem;
+  transition: 0.2s;
+}
+
+nav .menu ul {
+  display: none;
+}
+
+/* ==== MENU MOBILE ==== */
+
+nav.show .menu {
+  opacity: 1;
+  visibility: visible;
+
+  background-color: var(--body-color-second);
+
+  height: 100vh;
+  width: 100vw;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  display: grid;
+  place-content: center;
+}
+
+nav.show .menu ul {
+  display: grid;
+}
+
+nav.show ul.grid {
+  gap: 6.4rem;
+}
+
+/* Toggle Menu Mobile Icons  */
+
+.toggle {
+  color: var(--base-color);
+  font-size: 2.4rem;
+  cursor: pointer;
+}
+
+nav .icon-close {
+  opacity: 0;
+  visibility: hidden;
+
+  position: absolute;
+  top: -2.4rem;
+  right: 2.4rem;
+
+  transition: top 0.2s;
+}
+
+nav.show div.icon-close {
+  opacity: 1;
+  visibility: visible;
+  top: 2.4rem;
+}
+
+/* ==== BUTTONS ==== */
+
+.button {
+  background-color: var(--base-color);
+  color: var(--text-color-light);
+  height: 5.6rem;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 3.2rem;
+  border-radius: 0.4rem;
+  font: 500 1.6rem var(--body-font);
+  transition: background 0.2s;
+}
+
+.button:hover {
+  background-color: var(--base-color-alt);
+}
+
+/* ==== DIVIDERS ==== */
+
+.divider-1 {
+  height: 1px;
+  background: linear-gradient(
+    270deg,
+    hsla(var(--hue), 36%, 57%, 1),
+    hsla(var(--hue), 65%, 88%, 0.35)
+  );
+}
+
+.divider-2 {
+  height: 1px;
+  background: linear-gradient(
+    270deg,
+    hsla(var(--hue), 65%, 88%, 0.35),
+    hsla(var(--hue), 36%, 57%, 1)
+  );
+}
+
+/* ==== FOOTER ==== */
+
+footer {
+  background-color: var(--base-color);
+}
+
+footer.section {
+  padding: 6.4rem 0;
+}
+
+footer .logo-alt {
+  /* Por padrao as tag <a> sao 'display=inline'por isso devemos
+  deixa-las "inline-block" para poder dar 'margin-bottom' */
+  display: inline-block;
+  margin-bottom: 2.4rem;
+}
+
+footer .brand p {
+  color: var(--text-color-light);
+  margin-bottom: 1.2rem;
+}
+
+footer i {
+  font-size: 2.4rem;
+  color: var(--text-color-light);
+}
+
+footer .social {
+  grid-auto-flow: column;
+  width: fit-content;
+}
+
+footer .social a {
+  /* Por padrao as tag <a> sao 'display=inline'por isso devemos
+  deixa-las "inline-block" para poder dar 'translateY()' */
+  display: inline-block;
+  transition: 0.2s;
+}
+
+footer .social a:hover {
+  transform: translateY(-8px);
+}
+
+/* ARROW/BUTTON BACK TO TOP */
+
+.back-to-top {
+  background-color: var(--base-color);
+  color: var(--text-color-light);
+
+  position: fixed;
+  right: 1.6rem;
+  bottom: 1.6rem;
+
+  padding: 1rem;
+  clip-path: circle();
+
+  font-size: 2rem;
+  line-height: 0;
+
+  visibility: hidden;
+  opacity: 0;
+
+  transition: 0.2s;
+  transform: translateY(200%);
+}
+
+.back-to-top.show {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==== MEDIA QUERIES ==== */
+
+/* == Exta large devices: 1200 > == */
+
+@media (min-width: 1200px) {
+  /* ==== LAYOUT ==== */
+  .container {
+    max-width: 1120px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section {
+    padding: 16rem 0;
+  }
+
+  .section header {
+    max-width: 52.3rem;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  main {
+    margin-top: var(--header-height);
+  }
+
+  /* ==== BUTTONS==== */
+
+  .button {
+    height: 5rem;
+  }
+
+  /* ==== NAVIGATION ==== */
+
+  nav .menu {
+    opacity: 1;
+    visibility: visible;
+    top: 0;
+  }
+
+  nav .menu ul {
+    display: flex;
+    gap: 3.2rem;
+  }
+
+  nav .menu ul li a.title {
+    font: 400 1.6rem var(--body-font);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav .menu ul li a.title.active {
+    font-weight: bold;
+    -webkit-font-smoothing: auto;
+  }
+
+  nav .icon-menu {
+    display: none;
+  }
+
+  /* ==== FOOTER ==== */
+
+  footer.section {
+    padding: 6.1rem;
+  }
+
+  footer .container {
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  footer .logo-alt {
+    font-size: 3rem;
+  }
+}
+
+/* == Large devices: 1023 > == */
+
+@media (min-width: 1023px) {
+  /* ==== LAYOUT ==== */
+  .section header {
+    max-width: 52.3rem;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  main {
+    margin-top: var(--header-height);
+  }
+
+  /* ==== BUTTONS==== */
+
+  .button {
+    height: 5rem;
+  }
+
+  /* ==== NAVIGATION ==== */
+
+  nav .menu {
+    opacity: 1;
+    visibility: visible;
+    top: 0;
+  }
+
+  nav .menu ul {
+    display: flex;
+    gap: 3.2rem;
+  }
+
+  nav .menu ul li a.title {
+    font: 400 1.6rem var(--body-font);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav .menu ul li a.title.active {
+    font-weight: bold;
+    -webkit-font-smoothing: auto;
+  }
+
+  nav .icon-menu {
+    display: none;
+  }
+
+  /* ==== FOOTER ==== */
+
+  footer.section {
+    padding: 6.1rem;
+  }
+
+  footer .container {
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  footer .logo-alt {
+    font-size: 3rem;
+  }
+}
+
+/* == Large devices: 992 > == */
+
+@media (min-width: 992px) {
+  :root {
+    --title-font-size: 3.6rem;
+    --subtitle-font-size: 1.8rem;
+  }
+}
